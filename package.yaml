@@ -8,7 +8,6 @@ copyright:           "Copyright (c) 2022 Egor Lappo"
 
 extra-source-files:
 - README.md
-- CHANGELOG.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package

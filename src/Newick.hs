@@ -30,9 +30,11 @@ writeNewick' :: [Tree String] -> String
 writeNewick' = intercalate "\n" . map ((++ ";") . writeNewickLine)
 
 writeNewickLine :: Tree String -> String
-writeNewickLine (Leaf (n,l)) = n ++  ":" ++ l
+writeNewickLine (Leaf (n,l)) = n ++  writeBranchLength l 
+    where writeBranchLength x = if x == "" then "" else ":" ++ x
 writeNewickLine (Node (n,l) ts) = "(" ++ intercalate "," (map writeNewickLine ts) ++ ")"
-                                      ++ n ++ ":" ++ l
+                                      ++ n ++ writeBranchLength l
+    where writeBranchLength x = if x == "" then "" else ":" ++ x
 
 parseNewick :: String -> Either String [NamedTree String]
 parseNewick = fmap (fmap ("", )) . parseNewick'
